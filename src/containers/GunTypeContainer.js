@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import GunType from '../components/GunType';
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state) => ({
+  type: state.get('type')
 });
 
 const mapDispatchToProps = () => ({

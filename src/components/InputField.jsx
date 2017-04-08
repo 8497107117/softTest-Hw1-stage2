@@ -1,28 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ControlLabel, FormGroup, FormControl, HelpBlock } from 'react-bootstrap';
+import { ControlLabel, FormGroup, FormControl } from 'react-bootstrap';
 
-const InputField = ({ id, validationState, label, errMsg, ...props }) => {
+const InputField = ({ id, label, ...props }) => {
   return (
-    <FormGroup controlId={id} validationState={validationState}>
+    <FormGroup controlId={id}>
       <ControlLabel>{label}</ControlLabel>
       <FormControl {...props} />
-      {!!errMsg && <HelpBlock>{errMsg}</HelpBlock>}
     </FormGroup>
   );
 };
 
 InputField.propTypes = {
   id: PropTypes.string.isRequired,
-  validationState: PropTypes.string,
   label: PropTypes.string.isRequired,
-  errMsg: PropTypes.string
 };
-
-InputField.defaultProps = {
-  validationState: null,
-  errMsg: ''
-};
-
 
 export default InputField;
