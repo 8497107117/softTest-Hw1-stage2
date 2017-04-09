@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import GunType from '../components/GunType';
 
 const mapStateToProps = (state) => ({
-  type: state.get('type')
+  types: state.get('gunType').get('types')
 });
 
 const mapDispatchToProps = () => ({

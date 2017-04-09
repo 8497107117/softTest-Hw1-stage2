@@ -1,0 +1,112 @@
+{
+	"AR": {
+		"humanResources": {
+			"min": 30,
+			"max": 999
+		},
+		"ammunition": {
+			"min": 400,
+			"max": 999
+		},
+		"rations": {
+			"min": 400,
+			"max": 999
+		},
+		"components": {
+			"min": 30,
+			"max": 999
+		},
+		"all":{
+			"min": 800,
+			"max": 3996
+		}
+	},
+	"HG": {
+		"humanResources": {
+			"min": 30,
+			"max": 830
+		},
+		"ammunition": {
+			"min": 30,
+			"max": 830
+		},
+		"rations": {
+			"min": 30,
+			"max": 830
+		},
+		"components": {
+			"min": 30,
+			"max": 830
+		},
+		"all":{
+			"min": 120,
+			"max": 920
+		}
+	},
+	"MG": {
+		"humanResources": {
+			"min": 400,
+			"max": 999
+		},
+		"ammunition": {
+			"min": 600,
+			"max": 999
+		},
+		"rations": {
+			"min": 30,
+			"max": 999
+		},
+		"components": {
+			"min": 300,
+			"max": 999
+		},
+		"all":{
+			"min": 1330,
+			"max": 3996
+		}
+	},
+	"RF": {
+		"humanResources": {
+			"min": 300,
+			"max": 999
+		},
+		"ammunition": {
+			"min": 30,
+			"max": 999
+		},
+		"rations": {
+			"min": 300,
+			"max": 999
+		},
+		"components": {
+			"min": 30,
+			"max": 999
+		},
+		"all":{
+			"min": 660,
+			"max": 3996
+		}
+	},
+	"SMG": {
+		"humanResources": {
+			"min": 30,
+			"max": 999
+		},
+		"ammunition": {
+			"min": 30,
+			"max": 999
+		},
+		"rations": {
+			"min": 30,
+			"max": 999
+		},
+		"components": {
+			"min": 30,
+			"max": 999
+		},
+		"all":{
+			"min": 120,
+			"max": 3996
+		}
+	}
+}

@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 
 const initialState = Immutable.fromJS({
-	type: ''
+	types: []
 });
 
 const gunType = (state = initialState, action) => {

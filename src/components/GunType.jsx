@@ -1,7 +1,7 @@
 import React from 'react';
 import InputField from './InputField';
 
-const GunType = ({ type }) => {
+const GunType = ({ types }) => {
 	return (
 		<div>
 			<form className="modal-form animate">
@@ -38,7 +38,7 @@ const GunType = ({ type }) => {
 					<button onClick={e => { e.preventDefault(); }}>重置</button>
 				</div>
 			</form>
-			<div>{type}</div>
+			<div>{types.map((type, index)=>(<div key={index}>{type}</div>))}</div>
 		</div>
 	);
 };
