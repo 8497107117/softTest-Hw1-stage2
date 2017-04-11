@@ -144,3 +144,32 @@ describe('boundary value', () => {
 		})
 	})
 })
+
+describe('equivalence class', () => {
+	describe('normal', () => {
+		it('AR', () => { testMaterial(500, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG']) })
+		it('HG', () => { testMaterial(230, 230, 230, 230, ['HG', 'SMG']) })
+		it('MG', () => { testMaterial(700, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG']) })
+		it('RF', () => { testMaterial(650, 500, 650, 500, ['AR', 'RF', 'SMG']) })
+		it('SMG', () => { testMaterial(500, 500, 500, 500, ['AR', 'RF', 'SMG']) })
+	})
+	describe('robust', () => {
+		it('strong', () => {
+			testMaterial(29, 500, 500, 500, []);
+			testMaterial(500, 29, 500, 500, []);
+			testMaterial(500, 500, 29, 500, []);
+			testMaterial(500, 500, 29, 500, []);
+			testMaterial(29, 29, 500, 500, []);
+			testMaterial(29, 500, 29, 500, []);
+			testMaterial(29, 500, 500, 29, []);
+			testMaterial(500, 29, 29, 500, []);
+			testMaterial(500, 29, 500, 29, []);
+			testMaterial(500, 500, 29, 29, []);
+			testMaterial(29, 29, 29, 500, []);
+			testMaterial(29, 29, 500, 29, []);
+			testMaterial(29, 500, 29, 29, []);
+			testMaterial(500, 29, 29, 29, []);
+			testMaterial(29, 29, 29, 29, []);
+		})
+	})
+})
