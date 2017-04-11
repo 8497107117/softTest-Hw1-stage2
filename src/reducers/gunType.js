@@ -7,7 +7,7 @@ const initialState = Immutable.fromJS({
 const gunType = (state = initialState, action) => {
   switch (action.type) {
     default:
-      return state;
+        return state.updateIn(['types'], arr => arr.push('fuck'));
   }
 };
 

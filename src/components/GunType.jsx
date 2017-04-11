@@ -1,5 +1,6 @@
 import React from 'react';
 import InputField from './InputField';
+import store from '../store/store';
 
 const GunType = ({ types }) => {
 	return (
@@ -9,6 +10,7 @@ const GunType = ({ types }) => {
 					onChange={
 						e => {
 							e.preventDefault();
+                            store.dispatch({type: 'FUCK'});
 						}
 					}
 				/>
