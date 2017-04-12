@@ -10,7 +10,7 @@ const GunType = ({ types }) => {
 					onChange={
 						e => {
 							e.preventDefault();
-                            store.dispatch({action: 'ONCHANGE', type: 'HR', amount: e.target.value});
+                            store.dispatch({kind: 'HR', type: 'ONCHANGE', amount: e.target.value});
 						}
 					}
 				/>
@@ -18,7 +18,7 @@ const GunType = ({ types }) => {
 					onChange={
 						e => {
 							e.preventDefault();
-                            store.dispatch({action: 'ONCHANGE', type: 'AMMU', amount: e.target.value});
+                            store.dispatch({kind: 'AMMU', type: 'ONCHANGE', amount: e.target.value});
 						}
 					}
 				/>
@@ -26,7 +26,7 @@ const GunType = ({ types }) => {
 					onChange={
 						e => {
 							e.preventDefault();
-                            store.dispatch({action: 'ONCHANGE', type: 'RA', amount: e.target.value});
+                            store.dispatch({kind: 'RA', type: 'ONCHANGE', amount: e.target.value});
 						}
 					}
 				/>
@@ -34,7 +34,7 @@ const GunType = ({ types }) => {
 					onChange={
 						e => {
 							e.preventDefault();
-                            store.dispatch({action: 'ONCHANGE', type: 'PART', amount: e.target.value});
+                            store.dispatch({kind: 'PART', type: 'ONCHANGE', amount: e.target.value});
 						}
 					}
 				/>
