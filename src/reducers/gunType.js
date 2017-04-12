@@ -17,9 +17,7 @@ const GunTypeClac = (state) => {
     let resources = [parseInt(state.get('HR')), parseInt(state.get('AMMU')), 
                     parseInt(state.get('RA')), parseInt(state.get('PART'))];
     for(let i of resources){
-        console.log(i);
         if(i<30 || i > 999){
-            console.log("invalid");
             return state.set('types', []).set('guns', []);
         }
     }
