@@ -222,8 +222,8 @@ describe('edge testing', () => {
 		it('max of MG', ()=> {
 			testMaterial(999, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
 			testMaterial(700, 999, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
-			testMaterial(700, 800, 999, 650, ['AR', 'MG', 'RF', 'SMG')
-			testMaterial(700, 800, 500, 999, ['AR', 'MG', 'RF', 'SMG')
+			testMaterial(700, 800, 999, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 800, 500, 999, ['AR', 'MG', 'RF', 'SMG'])
 		})
 		it('min of RF', ()=> {
 			testMaterial(300, 500, 650, 500, ['AR', 'RF', 'SMG'])
@@ -319,3 +319,10 @@ describe('edge testing', () => {
 		})
 	})
 })
+
+
+/* here start the decision table testing */
+describe('DTT', () => {
+        // Orz
+})
+
