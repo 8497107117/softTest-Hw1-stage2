@@ -18,7 +18,7 @@ const GunTypeClac = (state) => {
                     parseInt(state.get('RA')), parseInt(state.get('PART'))];
     for(let i of resources){
         if(i<30 || i > 999){
-            return state.set('types', []).set('guns', []);
+            return state.set('types', []).set('names', []);
         }
     }
     for (let t in GunData) {
