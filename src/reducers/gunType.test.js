@@ -1,24 +1,28 @@
 import Immutable from 'immutable';
 import gunType from './gunType';
-import SUBMIT_MATERIAL from '../actions';
 
-const testMaterial = (humanResources, ammunition, rations, components, types) => {
-	expect(gunType(undefined,
-		{
-			type: SUBMIT_MATERIAL,
-			material: {
-				humanResources,
-				ammunition,
-				rations,
-				components
-			}
-		}))
-		.toEqual(Immutable.fromJS({ types }))
+const initialState = Immutable.fromJS({
+	names: [],
+	types: [],
+	HR: 30,
+	AMMU: 30,
+	RA: 30,
+	PART: 30
+});
+
+const testMaterial = (HR, AMMU, RA, PART, types) => {
+	let state = initialState;
+	state = gunType(state, { type: 'ONCHANGE', kind: 'HR', amount: HR });
+	state = gunType(state, { type: 'ONCHANGE', kind: 'AMMU', amount: AMMU });
+	state = gunType(state, { type: 'ONCHANGE', kind: 'RA', amount: RA });
+	state = gunType(state, { type: 'ONCHANGE', kind: 'PART', amount: PART });
+	expect(state.get('types'))
+		.toEqual(types)
 }
 
 describe('default', () => {
 	it('should return the initial state', () => {
-		testMaterial(null, null, null, null, []);
+		expect(gunType(undefined, {})).toEqual(initialState)
 	})
 })
 
@@ -26,18 +30,18 @@ describe('boundary value', () => {
 	describe('normal', () => {
 		it('min', () => {
 			testMaterial(30, 500, 500, 500, ['AR', 'SMG'])
-			testMaterial(500, 30, 500, 500, ['RF', 'SMG'])
-			testMaterial(500, 500, 30, 500, ['SMG'])
+			testMaterial(500, 30, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 30, 500, ['AR', 'SMG'])
 			testMaterial(500, 500, 500, 30, ['AR', 'RF', 'SMG'])
 		})
 		it('normal', () => {
 			testMaterial(500, 500, 500, 500, ['AR', 'RF', 'SMG'])
 		})
 		it('max', () => {
-			testMaterial(999, 500, 500, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(999, 500, 500, 500, ['AR', 'RF', 'SMG'])
 			testMaterial(500, 999, 500, 500, ['AR', 'MG', 'RF', 'SMG'])
-			testMaterial(500, 500, 999, 500, ['AR', 'MG', 'RF', 'SMG'])
-			testMaterial(500, 500, 500, 999, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 500, 999, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 500, 999, ['AR', 'RF', 'SMG'])
 		})
 	})
 	describe('robust', () => {
@@ -58,25 +62,25 @@ describe('boundary value', () => {
 		it('min of human resources', () => {
 			testMaterial(30, 30, 30, 30, ['HG', 'SMG'])
 			testMaterial(30, 30, 30, 500, ['HG', 'SMG'])
-			testMaterial(30, 30, 30, 999, ['SMG'])
+			testMaterial(30, 30, 30, 999, ['AR', 'SMG'])
 			testMaterial(30, 30, 500, 30, ['HG', 'SMG'])
-			testMaterial(30, 30, 500, 500, ['SMG'])
-			testMaterial(30, 30, 500, 999, ['SMG'])
-			testMaterial(30, 30, 999, 30, ['SMG'])
-			testMaterial(30, 30, 999, 500, ['SMG'])
-			testMaterial(30, 30, 999, 999, ['SMG'])
+			testMaterial(30, 30, 500, 500, ['AR', 'SMG'])
+			testMaterial(30, 30, 500, 999, ['AR', 'SMG'])
+			testMaterial(30, 30, 999, 30, ['AR', 'SMG'])
+			testMaterial(30, 30, 999, 500, ['AR', 'SMG'])
+			testMaterial(30, 30, 999, 999, ['AR', 'SMG'])
 			testMaterial(30, 500, 30, 30, ['HG', 'SMG'])
-			testMaterial(30, 500, 30, 500, ['SMG'])
-			testMaterial(30, 500, 30, 999, ['SMG'])
+			testMaterial(30, 500, 30, 500, ['AR', 'SMG'])
+			testMaterial(30, 500, 30, 999, ['AR', 'SMG'])
 			testMaterial(30, 500, 500, 30, ['AR', 'SMG'])
 			testMaterial(30, 500, 500, 500, ['AR', 'SMG'])
 			testMaterial(30, 500, 500, 999, ['AR', 'SMG'])
 			testMaterial(30, 500, 999, 30, ['AR', 'SMG'])
 			testMaterial(30, 500, 999, 500, ['AR', 'SMG'])
 			testMaterial(30, 500, 999, 999, ['AR', 'SMG'])
-			testMaterial(30, 999, 30, 30, ['SMG'])
-			testMaterial(30, 999, 30, 500, ['SMG'])
-			testMaterial(30, 999, 30, 999, ['SMG'])
+			testMaterial(30, 999, 30, 30, ['AR', 'SMG'])
+			testMaterial(30, 999, 30, 500, ['AR', 'SMG'])
+			testMaterial(30, 999, 30, 999, ['AR', 'SMG'])
 			testMaterial(30, 999, 500, 30, ['AR', 'SMG'])
 			testMaterial(30, 999, 500, 500, ['AR', 'SMG'])
 			testMaterial(30, 999, 500, 999, ['AR', 'SMG'])
@@ -86,26 +90,26 @@ describe('boundary value', () => {
 		})
 		it('normal of human resources', () => {
 			testMaterial(500, 30, 30, 30, ['HG', 'SMG'])
-			testMaterial(500, 30, 30, 500, ['SMG'])
-			testMaterial(500, 30, 30, 999, ['SMG'])
-			testMaterial(500, 30, 500, 30, ['RF', 'SMG'])
-			testMaterial(500, 30, 500, 500, ['RF', 'SMG'])
-			testMaterial(500, 30, 500, 999, ['RF', 'SMG'])
-			testMaterial(500, 30, 999, 30, ['RF', 'SMG'])
-			testMaterial(500, 30, 999, 500, ['RF', 'SMG'])
-			testMaterial(500, 30, 999, 999, ['RF', 'SMG'])
-			testMaterial(500, 500, 30, 30, ['SMG'])
-			testMaterial(500, 500, 30, 500, ['SMG'])
-			testMaterial(500, 500, 30, 999, ['SMG'])
+			testMaterial(500, 30, 30, 500, ['AR', 'SMG'])
+			testMaterial(500, 30, 30, 999, ['AR', 'SMG'])
+			testMaterial(500, 30, 500, 30, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 30, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 30, 500, 999, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 30, 999, 30, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 30, 999, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 30, 999, 999, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 30, 30, ['AR', 'SMG'])
+			testMaterial(500, 500, 30, 500, ['AR', 'SMG'])
+			testMaterial(500, 500, 30, 999, ['AR', 'SMG'])
 			testMaterial(500, 500, 500, 30, ['AR', 'RF', 'SMG'])
 			testMaterial(500, 500, 500, 500, ['AR', 'RF', 'SMG'])
 			testMaterial(500, 500, 500, 999, ['AR', 'RF', 'SMG'])
 			testMaterial(500, 500, 999, 30, ['AR', 'RF', 'SMG'])
 			testMaterial(500, 500, 999, 500, ['AR', 'RF', 'SMG'])
 			testMaterial(500, 500, 999, 999, ['AR', 'RF', 'SMG'])
-			testMaterial(500, 999, 30, 30, ['SMG'])
-			testMaterial(500, 999, 30, 500, ['MG', 'SMG'])
-			testMaterial(500, 999, 30, 999, ['MG', 'SMG'])
+			testMaterial(500, 999, 30, 30, ['AR', 'SMG'])
+			testMaterial(500, 999, 30, 500, ['AR', 'MG', 'SMG'])
+			testMaterial(500, 999, 30, 999, ['AR', 'MG', 'SMG'])
 			testMaterial(500, 999, 500, 30, ['AR', 'RF', 'SMG'])
 			testMaterial(500, 999, 500, 500, ['AR', 'MG', 'RF', 'SMG'])
 			testMaterial(500, 999, 500, 999, ['AR', 'MG', 'RF', 'SMG'])
@@ -114,27 +118,27 @@ describe('boundary value', () => {
 			testMaterial(500, 999, 999, 999, ['AR', 'MG', 'RF', 'SMG'])
 		})
 		it('max of human resources', () => {
-			testMaterial(999, 30, 30, 30, ['SMG'])
-			testMaterial(999, 30, 30, 500, ['SMG'])
-			testMaterial(999, 30, 30, 999, ['SMG'])
-			testMaterial(999, 30, 500, 30, ['RF', 'SMG'])
-			testMaterial(999, 30, 500, 500, ['RF', 'SMG'])
-			testMaterial(999, 30, 500, 999, ['RF', 'SMG'])
-			testMaterial(999, 30, 999, 30, ['RF', 'SMG'])
-			testMaterial(999, 30, 999, 500, ['RF', 'SMG'])
-			testMaterial(999, 30, 999, 999, ['RF', 'SMG'])
-			testMaterial(999, 500, 30, 30, ['SMG'])
-			testMaterial(999, 500, 30, 500, ['SMG'])
-			testMaterial(999, 500, 30, 999, ['SMG'])
+			testMaterial(999, 30, 30, 30, ['AR', 'SMG'])
+			testMaterial(999, 30, 30, 500, ['AR', 'SMG'])
+			testMaterial(999, 30, 30, 999, ['AR', 'SMG'])
+			testMaterial(999, 30, 500, 30, ['AR', 'RF', 'SMG'])
+			testMaterial(999, 30, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(999, 30, 500, 999, ['AR', 'RF', 'SMG'])
+			testMaterial(999, 30, 999, 30, ['AR', 'RF', 'SMG'])
+			testMaterial(999, 30, 999, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(999, 30, 999, 999, ['AR', 'RF', 'SMG'])
+			testMaterial(999, 500, 30, 30, ['AR', 'SMG'])
+			testMaterial(999, 500, 30, 500, ['AR', 'SMG'])
+			testMaterial(999, 500, 30, 999, ['AR', 'SMG'])
 			testMaterial(999, 500, 500, 30, ['AR', 'RF', 'SMG'])
 			testMaterial(999, 500, 500, 500, ['AR', 'RF', 'SMG'])
 			testMaterial(999, 500, 500, 999, ['AR', 'RF', 'SMG'])
 			testMaterial(999, 500, 999, 30, ['AR', 'RF', 'SMG'])
 			testMaterial(999, 500, 999, 500, ['AR', 'RF', 'SMG'])
 			testMaterial(999, 500, 999, 999, ['AR', 'RF', 'SMG'])
-			testMaterial(999, 999, 30, 30, ['SMG'])
-			testMaterial(999, 999, 30, 500, ['MG', 'SMG'])
-			testMaterial(999, 999, 30, 999, ['MG', 'SMG'])
+			testMaterial(999, 999, 30, 30, ['AR', 'SMG'])
+			testMaterial(999, 999, 30, 500, ['AR', 'MG', 'SMG'])
+			testMaterial(999, 999, 30, 999, ['AR', 'MG', 'SMG'])
 			testMaterial(999, 999, 500, 30, ['AR', 'RF', 'SMG'])
 			testMaterial(999, 999, 500, 500, ['AR', 'MG', 'RF', 'SMG'])
 			testMaterial(999, 999, 500, 999, ['AR', 'MG', 'RF', 'SMG'])
@@ -148,7 +152,7 @@ describe('boundary value', () => {
 describe('equivalence class', () => {
 	describe('normal', () => {
 		it('AR', () => { testMaterial(500, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG']) })
-		it('HG', () => { testMaterial(230, 230, 230, 230, ['HG', 'SMG']) })
+		it('HG', () => { testMaterial(230, 230, 230, 230, ['AR', 'HG', 'SMG']) })
 		it('MG', () => { testMaterial(700, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG']) })
 		it('RF', () => { testMaterial(650, 500, 650, 500, ['AR', 'RF', 'SMG']) })
 		it('SMG', () => { testMaterial(500, 500, 500, 500, ['AR', 'RF', 'SMG']) })
