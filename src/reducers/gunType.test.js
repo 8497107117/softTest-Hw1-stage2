@@ -198,22 +198,22 @@ describe('edge testing', () => {
 		it('min of HG', ()=> {
 			testMaterial(30, 200, 200, 200, ['HG', 'SMG'])
 			testMaterial(200, 30, 200, 200, ['HG', 'SMG'])
-			testMaterial(200, 200, 30, 200, ['AR', 'SMG'])
-			testMaterial(200, 200, 200, 30, ['AR', 'SMG'])
+			testMaterial(200, 200, 30, 200, ['HG', 'SMG'])
+			testMaterial(200, 200, 200, 30, ['HG', 'SMG'])
 		})
 		it('normal of HG', ()=> {
-			testMaterial(200, 200, 200, 200, ['HG', 'SMG'])
+			testMaterial(200, 200, 200, 200, ['AR', 'HG', 'SMG'])
 		})
 		it('max of HG', ()=> {
-			testMaterial(830, 200, 200, 200, ['SMG'])
-			testMaterial(200, 830, 200, 200, ['SMG'])
-			testMaterial(200, 200, 830, 200, ['SMG'])
-			testMaterial(200, 200, 200, 830, ['SMG'])
+			testMaterial(830, 200, 200, 200, ['AR', 'SMG'])
+			testMaterial(200, 830, 200, 200, ['AR', 'SMG'])
+			testMaterial(200, 200, 830, 200, ['AR', 'SMG'])
+			testMaterial(200, 200, 200, 830, ['AR', 'SMG'])
 		})
 		it('min of MG', ()=> {
 			testMaterial(400, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
 			testMaterial(700, 600, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
-			testMaterial(700, 800, 30, 650, ['MG', 'SMG'])
+			testMaterial(700, 800, 30, 650, ['AR', 'MG', 'SMG'])
 			testMaterial(700, 800, 500, 300, ['AR', 'MG', 'RF', 'SMG'])
 		})
 		it('normal of MG', ()=> {
@@ -227,8 +227,8 @@ describe('edge testing', () => {
 		})
 		it('min of RF', ()=> {
 			testMaterial(300, 500, 650, 500, ['AR', 'RF', 'SMG'])
-			testMaterial(650, 30, 650, 500, ['RF', 'SMG'])
-			testMaterial(650, 500, 300, 500, ['RF', 'SMG'])
+			testMaterial(650, 30, 650, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 500, 300, 500, ['AR', 'RF', 'SMG'])
 			testMaterial(650, 500, 650, 30, ['AR', 'RF', 'SMG'])
 		})
 		it('normal of RF', ()=> {
@@ -236,14 +236,14 @@ describe('edge testing', () => {
 		})
 		it('max of RF', ()=> {
 			testMaterial(999, 500, 650, 500, ['AR', 'RF', 'SMG'])
-			testMaterial(650, 999, 650, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 999, 650, 500, ['AR', 'MG', 'RF', 'SMG'])
 			testMaterial(650, 500, 999, 500, ['AR', 'RF', 'SMG'])
 			testMaterial(650, 500, 650, 999, ['AR', 'RF', 'SMG'])
 		})
 		it('min of SMG', ()=> {
 			testMaterial(30, 500, 500, 500, ['AR', 'SMG'])
-			testMaterial(500, 30, 500, 500, ['RF', 'SMG'])
-			testMaterial(500, 500, 30, 500, ['SMG'])
+			testMaterial(500, 30, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 30, 500, ['AR', 'SMG'])
 			testMaterial(500, 500, 500, 30, ['AR', 'RF', 'SMG'])
 		})
 		it('normal of SMG', ()=> {
@@ -259,8 +259,8 @@ describe('edge testing', () => {
 	describe('robust', () => {
 		it('min- of AR', ()=> {
 			testMaterial(29, 700, 700, 500, [])
-			testMaterial(500, 399, 700, 500, [])
-			testMaterial(500, 700, 399, 500, [])
+			testMaterial(500, 399, 700, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 700, 399, 500, ['AR', 'MG', 'RF', 'SMG'])
 			testMaterial(500, 700, 700, 29, [])
 		})
 		it('max+ of AR', ()=> {
@@ -276,16 +276,16 @@ describe('edge testing', () => {
 			testMaterial(230, 230, 230, 29, [])
 		})
 		it('max+ of HG', ()=> {
-			testMaterial(831, 230, 230, 230, [])
-			testMaterial(230, 831, 230, 230, [])
-			testMaterial(230, 230, 831, 230, [])
-			testMaterial(230, 230, 230, 831, [])
+			testMaterial(831, 230, 230, 230, ['AR', 'SMG'])
+			testMaterial(230, 831, 230, 230, ['AR', 'SMG'])
+			testMaterial(230, 230, 831, 230, ['AR', 'SMG'])
+			testMaterial(230, 230, 230, 831, ['AR', 'SMG'])
 		})
 		it('min- of MG', ()=> {
-			testMaterial(399, 800, 500, 650, [])
-			testMaterial(700, 599, 500, 650, [])
+			testMaterial(399, 800, 500, 650, ['AR', 'RF', 'SMG'])
+			testMaterial(700, 599, 500, 650, ['AR', 'RF', 'SMG'])
 			testMaterial(700, 800, 29, 650, [])
-			testMaterial(700, 800, 500, 299, [])
+			testMaterial(700, 800, 500, 299, ['AR', 'RF', 'SMG'])
 		})
 		it('max+ of MG', ()=> {
 			testMaterial(1000, 800, 500, 650, [])
@@ -294,9 +294,9 @@ describe('edge testing', () => {
 			testMaterial(700, 800, 500, 1000, [])
 		})
 		it('min- of RF', ()=> {
-			testMaterial(299, 500, 650, 500, [])
+			testMaterial(299, 500, 650, 500, ['AR', 'SMG'])
 			testMaterial(650, 29, 650, 500, [])
-			testMaterial(650, 500, 299, 500, [])
+			testMaterial(650, 500, 299, 500, ['AR', 'SMG'])
 			testMaterial(650, 500, 650, 29, [])
 		})
 		it('max+ of RF', ()=> {
@@ -325,4 +325,3 @@ describe('edge testing', () => {
 describe('DTT', () => {
         // Orz
 })
-
