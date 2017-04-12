@@ -14,9 +14,17 @@ const GunTypeClac = (state) => {
     let guns = [];
     let types = [];
     let hasType = [false, false, false, false, false];
+    let resources = [parseInt(state.get('HR')), parseInt(state.get('AMMU')), 
+                    parseInt(state.get('RA')), parseInt(state.get('PART'))];
+    for(let i of resources){
+        console.log(i);
+        if(i<30 || i > 999){
+            console.log("invalid");
+            return state.set('types', []).set('guns', []);
+        }
+    }
     for (let t in GunData) {
-        let sum = parseInt(state.get('HR')) + parseInt(state.get('AMMU'))
-            + parseInt(state.get('RA')) + parseInt(state.get('PART'));
+        let sum = resources.reduce((a,b)=>{return a+b});
         if (GunData[t].SP) {
             switch (t) {
                 case 'LowestHG':
