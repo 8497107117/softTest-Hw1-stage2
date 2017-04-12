@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import GunData from './GunData';
 
 const initialState = Immutable.fromJS({
 	types: [],
@@ -9,7 +10,8 @@ const initialState = Immutable.fromJS({
 });
 
 const GunTypeClac = (state) => {
-    
+    console.log(GunData);
+    return state;
 };
 
 const gunType = (state = initialState, action) => {
