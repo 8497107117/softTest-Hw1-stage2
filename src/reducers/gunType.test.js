@@ -186,8 +186,32 @@ describe('edge testing', () => {
 			testMaterial(500, 700, 400, 500, ['AR', 'MG', 'RF', 'SMG'])
 			testMaterial(500, 700, 700, 30, ['AR', 'RF', 'SMG'])
 		})
+		it('min+ of AR', ()=> {
+			testMaterial(31, 700, 700, 500, ['AR', 'SMG'])
+			testMaterial(500, 401, 700, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 700, 401, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 700, 700, 31, ['AR', 'RF', 'SMG'])
+		})
+		it('normal- of AR', ()=> {
+			testMaterial(499, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 699, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 700, 699, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 700, 700, 499, ['AR', 'MG', 'RF', 'SMG'])
+		})
 		it('normal of AR', ()=> {
 			testMaterial(500, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
+		})
+		it('normal+ of AR', ()=> {
+			testMaterial(501, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 701, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 700, 701, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 700, 700, 501, ['AR', 'MG', 'RF', 'SMG'])
+		})
+		it('max- of AR', ()=> {
+			testMaterial(998, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 998, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 700, 998, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 700, 700, 998, ['AR', 'MG', 'RF', 'SMG'])
 		})
 		it('max of AR', ()=> {
 			testMaterial(999, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
@@ -196,19 +220,43 @@ describe('edge testing', () => {
 			testMaterial(500, 700, 700, 999, ['AR', 'MG', 'RF', 'SMG'])
 		})
 		it('min of HG', ()=> {
-			testMaterial(30, 200, 200, 200, ['HG', 'SMG'])
-			testMaterial(200, 30, 200, 200, ['HG', 'SMG'])
-			testMaterial(200, 200, 30, 200, ['HG', 'SMG'])
-			testMaterial(200, 200, 200, 30, ['HG', 'SMG'])
+			testMaterial(30, 130, 130, 130, ['HG', 'SMG'])
+			testMaterial(130, 30, 130, 130, ['HG', 'SMG'])
+			testMaterial(130, 130, 30, 130, ['HG', 'SMG'])
+			testMaterial(130, 130, 130, 30, ['HG', 'SMG'])
+		})
+		it('min+ of HG', ()=> {
+			testMaterial(31, 130, 130, 130, ['HG', 'SMG'])
+			testMaterial(130, 31, 130, 130, ['HG', 'SMG'])
+			testMaterial(130, 130, 31, 130, ['HG', 'SMG'])
+			testMaterial(130, 130, 130, 31, ['HG', 'SMG'])
+		})
+		it('normal- of HG', ()=> {
+			testMaterial(129, 130, 130, 130, ['HG', 'SMG'])
+			testMaterial(130, 129, 130, 130, ['HG', 'SMG'])
+			testMaterial(130, 130, 129, 130, ['HG', 'SMG'])
+			testMaterial(130, 130, 130, 129, ['HG', 'SMG'])
 		})
 		it('normal of HG', ()=> {
 			testMaterial(130, 130, 130, 130, ['HG', 'SMG'])
 		})
+		it('normal+ of HG', ()=> {
+			testMaterial(131, 130, 130, 130, ['HG', 'SMG'])
+			testMaterial(130, 131, 130, 130, ['HG', 'SMG'])
+			testMaterial(130, 130, 131, 130, ['HG', 'SMG'])
+			testMaterial(130, 130, 130, 131, ['HG', 'SMG'])
+		})
+		it('max- of HG', ()=> {
+			testMaterial(829, 130, 130, 130, ['AR', 'SMG'])
+			testMaterial(130, 829, 130, 130, ['AR', 'SMG'])
+			testMaterial(130, 130, 829, 130, ['AR', 'SMG'])
+			testMaterial(130, 130, 130, 829, ['AR', 'SMG'])
+		})
 		it('max of HG', ()=> {
-			testMaterial(830, 200, 200, 200, ['AR', 'SMG'])
-			testMaterial(200, 830, 200, 200, ['AR', 'SMG'])
-			testMaterial(200, 200, 830, 200, ['AR', 'SMG'])
-			testMaterial(200, 200, 200, 830, ['AR', 'SMG'])
+			testMaterial(830, 130, 130, 130, ['AR', 'SMG'])
+			testMaterial(130, 830, 130, 130, ['AR', 'SMG'])
+			testMaterial(130, 130, 830, 130, ['AR', 'SMG'])
+			testMaterial(130, 130, 130, 830, ['AR', 'SMG'])
 		})
 		it('min of MG', ()=> {
 			testMaterial(400, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
@@ -216,8 +264,32 @@ describe('edge testing', () => {
 			testMaterial(700, 800, 30, 650, ['AR', 'MG', 'SMG'])
 			testMaterial(700, 800, 500, 300, ['AR', 'MG', 'RF', 'SMG'])
 		})
+		it('min+ of MG', ()=> {
+			testMaterial(401, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 601, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 800, 31, 650, ['AR', 'MG', 'SMG'])
+			testMaterial(700, 800, 500, 301, ['AR', 'MG', 'RF', 'SMG'])
+		})
+		it('normal- of MG', ()=> {
+			testMaterial(699, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 799, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 800, 499, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 800, 500, 649, ['AR', 'MG', 'RF', 'SMG'])
+		})
 		it('normal of MG', ()=> {
 			testMaterial(700, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
+		})
+		it('normal+ of MG', ()=> {
+			testMaterial(701, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 801, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 800, 501, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 800, 500, 651, ['AR', 'MG', 'RF', 'SMG'])
+		})
+		it('max- of MG', ()=> {
+			testMaterial(998, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 998, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 800, 998, 650, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 800, 500, 998, ['AR', 'MG', 'RF', 'SMG'])
 		})
 		it('max of MG', ()=> {
 			testMaterial(999, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
@@ -231,8 +303,32 @@ describe('edge testing', () => {
 			testMaterial(650, 500, 300, 500, ['AR', 'RF', 'SMG'])
 			testMaterial(650, 500, 650, 30, ['AR', 'RF', 'SMG'])
 		})
+		it('min+ of RF', ()=> {
+			testMaterial(301, 500, 650, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 31, 650, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 500, 301, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 500, 650, 31, ['AR', 'RF', 'SMG'])
+		})
+		it('normal- of RF', ()=> {
+			testMaterial(649, 500, 650, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 499, 650, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 500, 649, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 500, 650, 499, ['AR', 'RF', 'SMG'])
+		})
 		it('normal of RF', ()=> {
 			testMaterial(650, 500, 650, 500, ['AR', 'RF', 'SMG'])
+		})
+		it('normal+ of RF', ()=> {
+			testMaterial(651, 500, 650, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 501, 650, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 500, 651, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 500, 650, 501, ['AR', 'RF', 'SMG'])
+		})
+		it('max- of RF', ()=> {
+			testMaterial(998, 500, 650, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 998, 650, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(650, 500, 998, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(650, 500, 650, 998, ['AR', 'RF', 'SMG'])
 		})
 		it('max of RF', ()=> {
 			testMaterial(999, 500, 650, 500, ['AR', 'RF', 'SMG'])
@@ -246,8 +342,32 @@ describe('edge testing', () => {
 			testMaterial(500, 500, 30, 500, ['AR', 'SMG'])
 			testMaterial(500, 500, 500, 30, ['AR', 'RF', 'SMG'])
 		})
+		it('min+ of SMG', ()=> {
+			testMaterial(31, 500, 500, 500, ['AR', 'SMG'])
+			testMaterial(500, 31, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 31, 500, ['AR', 'SMG'])
+			testMaterial(500, 500, 500, 31, ['AR', 'RF', 'SMG'])
+		})
+		it('normal- of SMG', ()=> {
+			testMaterial(499, 500, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 499, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 499, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 500, 499, ['AR', 'RF', 'SMG'])
+		})
 		it('normal of SMG', ()=> {
 			testMaterial(500, 500, 500, 500, ['AR', 'RF', 'SMG'])
+		})
+		it('normal+ of SMG', ()=> {
+			testMaterial(501, 500, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 501, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 501, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 500, 501, ['AR', 'RF', 'SMG'])
+		})
+		it('max- of SMG', ()=> {
+			testMaterial(998, 500, 500, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 998, 500, 500, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 500, 998, 500, ['AR', 'RF', 'SMG'])
+			testMaterial(500, 500, 500, 998, ['AR', 'RF', 'SMG'])
 		})
 		it('max of SMG', ()=> {
 			testMaterial(999, 500, 500, 500, ['AR', 'RF', 'SMG'])
