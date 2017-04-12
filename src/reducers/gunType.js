@@ -8,15 +8,21 @@ const initialState = Immutable.fromJS({
     PART: 30
 });
 
+const GunTypeClac = (state) => {
+    
+};
+
 const gunType = (state = initialState, action) => {
     switch (action.action) {
         case 'ONCHANGE':
             console.log(action);
-            return state.set(action.type, action.amount);
+            state.set(action.type, action.amount);
             break;
         default:
             return state;
     }
+
+    return GunTypeClac(state);
 };
 
 export default gunType;
