@@ -152,7 +152,7 @@ describe('boundary value', () => {
 describe('equivalence class', () => {
 	describe('normal', () => {
 		it('AR', () => { testMaterial(500, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG']) })
-		it('HG', () => { testMaterial(230, 230, 230, 230, ['AR', 'HG', 'SMG']) })
+		it('HG', () => { testMaterial(130, 130, 130, 130, ['HG', 'SMG']) })
 		it('MG', () => { testMaterial(700, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG']) })
 		it('RF', () => { testMaterial(650, 500, 650, 500, ['AR', 'RF', 'SMG']) })
 		it('SMG', () => { testMaterial(500, 500, 500, 500, ['AR', 'RF', 'SMG']) })
@@ -187,7 +187,7 @@ describe('edge testing', () => {
 			testMaterial(500, 700, 700, 30, ['AR', 'RF', 'SMG'])
 		})
 		it('normal of AR', ()=> {
-			testMaterial(400, 600, 600, 400, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
 		})
 		it('max of AR', ()=> {
 			testMaterial(999, 700, 700, 500, ['AR', 'MG', 'RF', 'SMG'])
@@ -202,7 +202,7 @@ describe('edge testing', () => {
 			testMaterial(200, 200, 200, 30, ['HG', 'SMG'])
 		})
 		it('normal of HG', ()=> {
-			testMaterial(200, 200, 200, 200, ['AR', 'HG', 'SMG'])
+			testMaterial(130, 130, 130, 130, ['HG', 'SMG'])
 		})
 		it('max of HG', ()=> {
 			testMaterial(830, 200, 200, 200, ['AR', 'SMG'])
@@ -217,7 +217,7 @@ describe('edge testing', () => {
 			testMaterial(700, 800, 500, 300, ['AR', 'MG', 'RF', 'SMG'])
 		})
 		it('normal of MG', ()=> {
-			testMaterial(700, 700, 700, 700, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(700, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
 		})
 		it('max of MG', ()=> {
 			testMaterial(999, 800, 500, 650, ['AR', 'MG', 'RF', 'SMG'])
@@ -232,7 +232,7 @@ describe('edge testing', () => {
 			testMaterial(650, 500, 650, 30, ['AR', 'RF', 'SMG'])
 		})
 		it('normal of RF', ()=> {
-			testMaterial(700, 600, 700, 600, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(650, 500, 650, 500, ['AR', 'RF', 'SMG'])
 		})
 		it('max of RF', ()=> {
 			testMaterial(999, 500, 650, 500, ['AR', 'RF', 'SMG'])
@@ -247,7 +247,7 @@ describe('edge testing', () => {
 			testMaterial(500, 500, 500, 30, ['AR', 'RF', 'SMG'])
 		})
 		it('normal of SMG', ()=> {
-			testMaterial(600, 600, 600, 600, ['AR', 'MG', 'RF', 'SMG'])
+			testMaterial(500, 500, 500, 500, ['AR', 'RF', 'SMG'])
 		})
 		it('max of SMG', ()=> {
 			testMaterial(999, 500, 500, 500, ['AR', 'RF', 'SMG'])
