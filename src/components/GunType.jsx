@@ -2,7 +2,7 @@ import React from 'react';
 import InputField from './InputField';
 import store from '../store/store';
 
-const GunType = ({ types }) => {
+const GunType = ({ names, types }) => {
 	return (
 		<div>
 			<form className="modal-form animate">
@@ -10,7 +10,7 @@ const GunType = ({ types }) => {
 					onChange={
 						e => {
 							e.preventDefault();
-                            store.dispatch({kind: 'HR', type: 'ONCHANGE', amount: e.target.value});
+							store.dispatch({ kind: 'HR', type: 'ONCHANGE', amount: e.target.value });
 						}
 					}
 				/>
@@ -18,7 +18,7 @@ const GunType = ({ types }) => {
 					onChange={
 						e => {
 							e.preventDefault();
-                            store.dispatch({kind: 'AMMU', type: 'ONCHANGE', amount: e.target.value});
+							store.dispatch({ kind: 'AMMU', type: 'ONCHANGE', amount: e.target.value });
 						}
 					}
 				/>
@@ -26,7 +26,7 @@ const GunType = ({ types }) => {
 					onChange={
 						e => {
 							e.preventDefault();
-                            store.dispatch({kind: 'RA', type: 'ONCHANGE', amount: e.target.value});
+							store.dispatch({ kind: 'RA', type: 'ONCHANGE', amount: e.target.value });
 						}
 					}
 				/>
@@ -34,16 +34,13 @@ const GunType = ({ types }) => {
 					onChange={
 						e => {
 							e.preventDefault();
-                            store.dispatch({kind: 'PART', type: 'ONCHANGE', amount: e.target.value});
+							store.dispatch({ kind: 'PART', type: 'ONCHANGE', amount: e.target.value });
 						}
 					}
 				/>
-				<div>
-					<button onClick={e => { e.preventDefault(); }}>確認</button>
-					<button onClick={e => { e.preventDefault(); }}>重置</button>
-				</div>
 			</form>
-			<div>{types.map((type, index)=>(<div key={index}>{type}</div>))}</div>
+			<div>{types.map((type, index) => (<div key={index}>{type}</div>))}</div>
+			<div>{names.map((name, index) => (<div key={index}>{name}</div>))}</div>
 		</div>
 	);
 };
